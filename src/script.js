@@ -17,9 +17,10 @@ currentDate.innerHTML = (`${day} ${month} ${date}, ${year}`);
 
 function showTemperature(response) {
   console.log(response);
-  let temperature = Math.round(response.data.main.temp);
+  fahreinheitTemp = response.data.main.temp;
+  let temperature = Math.round(fahreinheitTemp);
   let currentTemp = document.querySelector("#current-temp");
-  currentTemp.innerHTML = `${temperature}°F `;
+  currentTemp.innerHTML = `${temperature}`;
   let humidity = (response.data.main.humidity);
   let currentHumidity = document.querySelector("#humidity");
   currentHumidity.innerHTML = `Humidity: ${humidity}%`;
@@ -49,14 +50,28 @@ function showCity(event) {
 
 function showCelsiusTemp(event) {
   event.preventDefault();
-  let celsiusTemp = `(${temperature} − 32) × 5 / 9`;
-  let celsiusTempElement = document.querySelector("#celsius-link");
-  celsiusTempElement.innerHTML = `${celsiusTemp}`;
+  let currentTempElement = document.querySelector("#current-temp");
+  fahreinheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
+  let celsiusTemp = (fahreinheitTemp - 32) * 5/9;
+  currentTempElement.innerHTML = Math.round(celsiusTemp);
 }
 
+function showFahreinheitTemp(event) {
+  event.preventDefault();
+  let currentTempElement = document.querySelector("#current-temp");
+  celsiusLink.classList.remove("active");
+  fahreinheitLink.classList.add("active");
+  currentTempElement.innerHTML = Math.round(fahreinheitTemp);
+}
 
 let city = document.querySelector("form");
 city.addEventListener("submit", showCity);
 
-let celsiusLink = document.querySelector("#celcius-link");
+let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", showCelsiusTemp);
+
+let fahreinheitTemp = null;
+
+let fahreinheitLink = document.querySelector("#fahreinheit-link");
+fahreinheitLink.addEventListener("click", showFahreinheitTemp);

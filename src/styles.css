@@ -31,6 +31,9 @@
   text-transform: capitalize;
 }
 
+small {
+  font-size: 30px;
+}
 h1 {
   font-weight: 700;
   padding-top: 10px;
@@ -43,6 +46,10 @@ ul {
   font-size: large;
   padding-top: 1px;
   padding-bottom: 2px;
+}
+
+a {
+  text-decoration: none;
 }
 
 .row {
@@ -75,4 +82,14 @@ ul {
 .mild {
   background-color: #d6e1f6;
   border-color: #42a5f5;
+}
+
+.active {
+  color: black;
+  text-decoration: none;
+  cursor: default;
+}
+
+.active:hover {
+  color: black;
 }
