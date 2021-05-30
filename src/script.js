@@ -16,9 +16,17 @@ let currentDate = document.querySelector("#current-date");
 currentDate.innerHTML = (`${day} ${month} ${date}, ${year}`);
 
 function showTemperature(response) {
+  console.log(response);
   let temperature = Math.round(response.data.main.temp);
   let currentTemp = document.querySelector("#current-temp");
   currentTemp.innerHTML = `${temperature}°F`;
+  let humidity = (response.data.main.humidity);
+  let currentHumidity = document.querySelector("#humidity");
+  currentHumidity.innerHTML = `Humidity: ${humidity}%`
+  let windSpeed = Math.round(response.data.wind.speed);
+  let currentWindSpeed = document.querySelector("#wind-speed");
+  currentWindSpeed.innerHTML = `Wind Speed: ${windSpeed} mph`
+  
 }
 
 
@@ -38,10 +46,3 @@ function showCity(event) {
 
 let city = document.querySelector("form");
 city.addEventListener("submit", showCity);
-
-
-
-
-  
-
-
