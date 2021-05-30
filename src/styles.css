@@ -27,6 +27,10 @@
   color: grey;
 }
 
+#weather-description {
+  text-transform: capitalize;
+}
+
 h1 {
   font-weight: 700;
   padding-top: 10px;
