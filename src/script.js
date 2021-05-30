@@ -19,14 +19,18 @@ function showTemperature(response) {
   console.log(response);
   let temperature = Math.round(response.data.main.temp);
   let currentTemp = document.querySelector("#current-temp");
-  currentTemp.innerHTML = `${temperature}°F`;
+  currentTemp.innerHTML = `${temperature}°F `;
   let humidity = (response.data.main.humidity);
   let currentHumidity = document.querySelector("#humidity");
-  currentHumidity.innerHTML = `Humidity: ${humidity}%`
+  currentHumidity.innerHTML = `Humidity: ${humidity}%`;
   let windSpeed = Math.round(response.data.wind.speed);
   let currentWindSpeed = document.querySelector("#wind-speed");
-  currentWindSpeed.innerHTML = `Wind Speed: ${windSpeed} mph`
-  
+  currentWindSpeed.innerHTML = `Wind Speed: ${windSpeed} mph`;
+  let description = (response.data.weather[0].description);
+  let currentDescription = document.querySelector("#weather-description");
+  currentDescription.innerHTML = `${description}`;
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 }
 
 
@@ -43,6 +47,16 @@ function showCity(event) {
   axios.get(apiUrl).then(showTemperature);
 }
 
+function showCelsiusTemp(event) {
+  event.preventDefault();
+  let celsiusTemp = `(${temperature} − 32) × 5 / 9`;
+  let celsiusTempElement = document.querySelector("#celsius-link");
+  celsiusTempElement.innerHTML = `${celsiusTemp}`;
+}
+
 
 let city = document.querySelector("form");
 city.addEventListener("submit", showCity);
+
+let celsiusLink = document.querySelector("#celcius-link");
+celsiusLink.addEventListener("click", showCelsiusTemp);
