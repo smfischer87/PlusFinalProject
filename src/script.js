@@ -20,7 +20,7 @@ function showTemperature(response) {
   fahreinheitTemp = response.data.main.temp;
   let temperature = Math.round(fahreinheitTemp);
   let currentTemp = document.querySelector("#current-temp");
-  currentTemp.innerHTML = `${temperature}`;
+  currentTemp.innerHTML = `${temperature}°F`;
   let humidity = (response.data.main.humidity);
   let currentHumidity = document.querySelector("#humidity");
   currentHumidity.innerHTML = `Humidity: ${humidity}%`;
@@ -48,30 +48,8 @@ function showCity(event) {
   axios.get(apiUrl).then(showTemperature);
 }
 
-function showCelsiusTemp(event) {
-  event.preventDefault();
-  let currentTempElement = document.querySelector("#current-temp");
-  fahreinheitLink.classList.remove("active");
-  celsiusLink.classList.add("active");
-  let celsiusTemp = (fahreinheitTemp - 32) * 5/9;
-  currentTempElement.innerHTML = Math.round(celsiusTemp);
-}
-
-function showFahreinheitTemp(event) {
-  event.preventDefault();
-  let currentTempElement = document.querySelector("#current-temp");
-  celsiusLink.classList.remove("active");
-  fahreinheitLink.classList.add("active");
-  currentTempElement.innerHTML = Math.round(fahreinheitTemp);
-}
 
 let city = document.querySelector("form");
 city.addEventListener("submit", showCity);
 
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", showCelsiusTemp);
-
-let fahreinheitTemp = null;
-
-let fahreinheitLink = document.querySelector("#fahreinheit-link");
-fahreinheitLink.addEventListener("click", showFahreinheitTemp);
+showCity("Los Angeles");
