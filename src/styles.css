@@ -1,5 +1,5 @@
 .card {
-  padding: 100px 100px;
+  padding: 90px 70px;
   margin: 20px 20px;
   background-color: #f5e9f7;
   border-color: #a556b3;
@@ -52,9 +52,15 @@ a {
   text-decoration: none;
 }
 
+footer {
+  font-size: 12px;
+  text-align: center;
+}
+
 .row {
   text-align: center;
   padding: 10px;
+  justify-content: space-between;
 }
 
 .main {
@@ -62,24 +68,24 @@ a {
   font-weight: 800;
 }
 
-.temps {
-  border: 2px solid black;
-  border-radius: 100%;
-  padding: 12px;
-  font-size: 50px;
+.weather-forecast {
+  margin-top: 40px;
+  text-align: center;
+  column-gap: 20%;
 }
 
-.hot {
-  background-color: #f7dccd;
+.single-forecast {
+  border: 2px solid black;
+  border-radius: 25%;
+  padding: 0 12px;
+  background-color: #d6e1f6;
   border-color: #ffa726;
 }
 
-.cold {
-  background-color: #cedae2;
-  border-color: #5a6275;
+.min {
+  opacity: 0.7;
 }
 
-.mild {
-  background-color: #d6e1f6;
-  border-color: #42a5f5;
+#forecast {
+  column-gap: 20%;
 }

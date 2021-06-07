@@ -15,8 +15,33 @@ currentTime.innerHTML = (`${hours}:${minutes}`);
 let currentDate = document.querySelector("#current-date");
 currentDate.innerHTML = (`${day} ${month} ${date}, ${year}`);
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let daily = ["Sun", "Mon", "Tue", "Wed", "Thu"];
+  let forecastHTML = `<div class="row">`;
+  daily.forEach(function (day) {
+   forecastHTML = forecastHTML +
+   `<div class="col-2">
+        <div class="single-forecast">
+          <div class="day">
+            ${day}
+          </div>
+          <img
+            src="https://openweathermap.org/img/wn/01d@2x.png"
+            alt="Clear"
+            />
+            <strong>89°</strong>  
+            <span class="min">63°</span>
+        </div>
+      </div>
+    `;
+})
+  forecastHTML = forecastHTML + `</div>`;  
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function showTemperature(response) {
-  console.log(response);
+    console.log(response);
   fahreinheitTemp = response.data.main.temp;
   let temperature = Math.round(fahreinheitTemp);
   let currentTemp = document.querySelector("#current-temp");
@@ -33,7 +58,7 @@ function showTemperature(response) {
   let iconElement = document.querySelector("#icon");
   iconElement.setAttribute("src", `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 }
-
+  
 
 function showCity(event) {
   event.preventDefault();
@@ -52,4 +77,4 @@ function showCity(event) {
 let city = document.querySelector("form");
 city.addEventListener("submit", showCity);
 
-showCity("Los Angeles");
+displayForecast();
